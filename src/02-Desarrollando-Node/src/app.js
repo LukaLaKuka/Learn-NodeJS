@@ -80,6 +80,7 @@ getPokemonById("474")
 
 // * Ejercicio 7 (inventado) => Pasar el getPokemonById con Factory Build y Packaging de Packages
 
+/*
 const { httpAxiosClient, httpClient } = require('./plugins');
 
 httpAxiosClient.get(`https://pokeapi.co/api/v2/pokemon/1`)
@@ -89,3 +90,15 @@ httpAxiosClient.get(`https://pokeapi.co/api/v2/pokemon/1`)
 httpClient.get(`https://pokeapi.co/api/v2/pokemon/1`)
     .then(response => { console.log(response.name) })
     .catch(err => { console.error(err) });
+
+*/
+
+// ! Sección 4
+
+// * Winston Logger
+
+const { buildLogger } = require('./plugins')
+
+const logger = buildLogger('app.js');
+
+logger.error("ESTO ES UN ERROR");
