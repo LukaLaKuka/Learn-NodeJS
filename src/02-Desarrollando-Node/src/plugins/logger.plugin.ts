@@ -1,7 +1,7 @@
 const winston = require('winston');
 const { combine, timestamp, json } = winston.format
 
-const logger = winston.createLogger({
+const logger: any = winston.createLogger({
     level: 'info',
     format: combine(
         timestamp(),
@@ -21,12 +21,12 @@ if (process.env.NODE_ENV !== 'production') {
     }));
 }
 
-const buildLogger = (service) => {
+const buildLogger = (service: string): {log: Function, error: Function} => {
     return {
-        log: (message) => {
+        log: (message: string) => {
             logger.log('info', message, service)
         },
-        error: (message) => {
+        error: (message: string) => {
             logger.log('error', { message, service })
         }
     }

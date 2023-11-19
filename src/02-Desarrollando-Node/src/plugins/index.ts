@@ -4,7 +4,7 @@ const { httpClient } = require('./http-client.plugin');
 const { httpAxiosClient } = require('./axios.plugin');
 const { buildLogger } = require('./logger.plugin')
 
-module.exports = {
+export {
     getAge,
     generateUUID,
     httpAxiosClient,

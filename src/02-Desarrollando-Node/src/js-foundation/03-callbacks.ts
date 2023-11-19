@@ -1,4 +1,9 @@
-const users = [
+type User = {
+    id: number,
+    name: string
+}
+
+const users: Array<User> = [
     {
         id: 1,
         name: "Luka"
@@ -13,8 +18,8 @@ const users = [
     }
 ];
 
-function findUser(id, callback) {
-    const user = users.find(function (user) {
+function findUser(id: number, callback: Function): User | undefined {
+    const user: User | undefined = users.find(function (user: User): boolean {
         return user.id === id;
     });
     
@@ -25,7 +30,8 @@ function findUser(id, callback) {
     return callback(null, user);
 }
 
-module.exports = {
-    findUser: findUser
+export {
+    findUser,
+    User
 }
 

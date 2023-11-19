@@ -1,4 +1,6 @@
-const users = [
+import { User } from "./03-callbacks"
+
+const users: Array<User> = [
     {
         id: 1,
         name: "Luka"
@@ -13,13 +15,13 @@ const users = [
     }
 ];
 
-const findUser = (id, callback) => {
-    const user = users.find((user) => user.id === id);
+const findUser = (id: number, callback: Function) => {
+    const user: User | undefined = users.find((user) => user.id === id);
 
     (user) ? callback(null, user) : callback(`User not found with id: ${id}`);;
 }
 
-module.exports = {
-    findUser: findUser
+export {
+    findUser,
 }
 

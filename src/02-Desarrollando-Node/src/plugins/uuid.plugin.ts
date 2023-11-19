@@ -1,6 +1,8 @@
+import { UUID } from "crypto";
+
 const { v4: uuidv4 } = require('uuid');
 
-const generateUUID = () => uuidv4();
+const generateUUID = (): UUID => uuidv4();
 
 module.exports = {
     generateUUID,
