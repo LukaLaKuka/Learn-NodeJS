@@ -28,3 +28,13 @@ console.log(arrowFunction5(2, 2));
 console.log(arrowFunction6());
 console.log(myObject.saludar());
 console.log(myObject.despedir("Adioss"));
+
+export {
+    arrowFunction1,
+    arrowFunction2, 
+    arrowFunction3,
+    arrowFunction4,
+    arrowFunction5,
+    arrowFunction6,
+    myObject
+}

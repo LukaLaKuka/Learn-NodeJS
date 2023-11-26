@@ -1,3 +1,4 @@
+"use strict";
 /*
 // * Módulos
 const {emailTemplate} = require('./js-foundation/01-template');
@@ -100,4 +101,4 @@ const logger: { log: Function, error: Function } = buildLogger('app.js');
 
 logger.error("ESTO ES UN ERROR");
 
-*/
+*/ 

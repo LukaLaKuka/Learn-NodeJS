@@ -1,12 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.buildLogger = void 0;
 const winston = require('winston');
-const { combine, timestamp, json } = winston.format
-
-const logger: any = winston.createLogger({
+const { combine, timestamp, json } = winston.format;
+const logger = winston.createLogger({
     level: 'info',
-    format: combine(
-        timestamp(),
-        json()
-    ),
+    format: combine(timestamp(), json()),
     defaultMeta: { service: 'user-service' },
     transports: [
         new winston.transports.File({ filename: 'src/logs/error.log', level: 'error' }),
@@ -14,24 +13,19 @@ const logger: any = winston.createLogger({
         new winston.transports.File({ filename: 'src/logs/combined.log' }),
     ],
 });
-
 if (process.env.NODE_ENV !== 'production') {
     logger.add(new winston.transports.Console({
         format: winston.format.simple(),
     }));
 }
-
-const buildLogger = (service: string): {log: Function, error: Function} => {
+const buildLogger = (service) => {
     return {
-        log: (message: string) => {
-            logger.log('info', message, service)
+        log: (message) => {
+            logger.log('info', message, service);
         },
-        error: (message: string) => {
-            logger.log('error', { message, service })
+        error: (message) => {
+            logger.log('error', { message, service });
         }
-    }
-}
-
-export {
-    buildLogger,
-}
+    };
+};
+exports.buildLogger = buildLogger;

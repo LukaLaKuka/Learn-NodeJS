@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.heros = exports.tercerHeroa = exports.Pepe = exports.primerHeroe = void 0;
+const heros = ['Flash', 'Superman', 'Batman'];
+exports.heros = heros;
+const [primerHeroe, Pepe, tercerHeroa] = heros;
+exports.primerHeroe = primerHeroe;
+exports.Pepe = Pepe;
+exports.tercerHeroa = tercerHeroa;
+console.table(tercerHeroa);

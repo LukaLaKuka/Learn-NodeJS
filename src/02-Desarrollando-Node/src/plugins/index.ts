@@ -1,8 +1,8 @@
-const { getAge } = require('./get-age.plugin');
-const { generateUUID } = require('./uuid.plugin');
-const { httpClient } = require('./http-client.plugin');
-const { httpAxiosClient } = require('./axios.plugin');
-const { buildLogger } = require('./logger.plugin')
+import { getAge } from './get-age.plugin'
+import { generateUUID } from './uuid.plugin'
+import { httpClient } from './http-client.plugin'
+import { httpAxiosClient } from "./axios.plugin";
+import { buildLogger } from './logger.plugin'
 
 export {
     getAge,

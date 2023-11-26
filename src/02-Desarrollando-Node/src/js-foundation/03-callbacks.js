@@ -1,9 +1,7 @@
-interface User {
-    id: number,
-    name: string
-}
-
-const users: Array<User> = [
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.findUser = void 0;
+const users = [
     {
         id: 1,
         name: "Luka"
@@ -17,21 +15,13 @@ const users: Array<User> = [
         name: "David"
     }
 ];
-
-function findUser(id: number, callback: Function): User | undefined {
-    const user: User | undefined = users.find(function (user: User): boolean {
+function findUser(id, callback) {
+    const user = users.find(function (user) {
         return user.id === id;
     });
-    
     if (!user) {
         return callback(`User not found with id: ${id}`);
     }
-
     return callback(null, user);
 }
-
-export {
-    findUser,
-    User
-}
-
+exports.findUser = findUser;

@@ -1,17 +1,16 @@
-const axios = require('axios');
+import axios from "axios";
 
 const httpAxiosClient: {get: Function} = {
     get: async (url: string): Promise<any> => {
         try {
-            if (!url) throw new Error("No url given");
             let data = await axios.get(url);
             return data;
         } catch (e) {
-            console.error(e);
+            throw `Error fetching ${url}`;
         }
     }
 }
 
-module.exports = {
+export {
     httpAxiosClient
 }

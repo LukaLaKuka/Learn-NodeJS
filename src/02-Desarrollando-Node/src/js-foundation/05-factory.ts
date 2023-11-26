@@ -1,8 +1,8 @@
 const { getAge, generateUUID } = require('../plugins');
 
 interface IbuildMakePerson {
-    generateUUID: Function;
-    getAge: Function;
+    generateUUID: () => string;
+    getAge: (birthdate: string) => number
 }
 
 interface Iperson {
@@ -28,6 +28,6 @@ const buildMakePerson = ({ generateUUID, getAge }: IbuildMakePerson): Function =
     }
 }
 
-module.exports = {
+export {
     buildMakePerson,
 }
