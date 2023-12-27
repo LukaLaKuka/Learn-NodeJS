@@ -19,9 +19,12 @@ Tabla del ${base} sobre ${length}
     return output;
 }
 
-const saveFile = (outputDir: string, filename: string, data: string, options: WriteFileOptions) => {
+const saveFile = (outputDir: string, filename: string, data: string, options?: WriteFileOptions) => {
     if (!(outputDir === '')) {
         fs.mkdirSync(outputDir, { recursive: true })
+    }
+    if (!options) {
+        fs.writeFileSync(path.join(outputDir, `${filename}.txt`), data);
     }
     fs.writeFileSync(path.join(outputDir, `${filename}.txt`), data, options);
     console.log(`File created succesfully!`);
