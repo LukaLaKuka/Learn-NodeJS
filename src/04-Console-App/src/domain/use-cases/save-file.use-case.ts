@@ -6,10 +6,11 @@ interface ISaveFileUseCase {
 }
 
 interface IFileData {
-    outputDir: string;
-    filename: string;
+    outputDir?: string;
+    filename?: string;
     data: string;
 }
+
 
 export class SaveFile implements ISaveFileUseCase {
 
@@ -17,7 +18,7 @@ export class SaveFile implements ISaveFileUseCase {
 
     }
 
-    execute({ outputDir, filename, data }: IFileData): boolean {
+    execute({ data, outputDir = '', filename = 'new table' }: IFileData): boolean {
         try {
             if (!(outputDir === '')) {
                 fs.mkdirSync(outputDir, { recursive: true })

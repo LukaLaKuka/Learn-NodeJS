@@ -4,7 +4,7 @@ export interface ICreateTableUseCase {
 
 interface ITableData {
     base: number;
-    length: number;
+    length?: number;
 }
 
 export class CreateTable implements ICreateTableUseCase {
@@ -12,7 +12,7 @@ export class CreateTable implements ICreateTableUseCase {
 
     }
 
-    execute({ base, length }: ITableData): string {
+    execute({ base, length = 10 }: ITableData): string {
         let output: string = `===========================
 Tabla del ${base} sobre ${length}
 ===========================\n`

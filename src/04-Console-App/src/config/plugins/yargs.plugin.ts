@@ -10,26 +10,22 @@ export const yarg = yargs(hideBin(process.argv))
     }).option('l', {
         alias: 'length',
         type: 'number',
-        demandOption: true,
         default: 10,
         description: 'Multiplication table limit'
     }).option('s', {
         alias: 'show',
         type: 'boolean',
         default: false,
-        demandOption: true,
         description: 'Show the table in console'
     }).option('o', {
         alias: 'outputDir',
         type: 'string',
         default: '',
-        demandOption: true,
         description: 'Output Dir File'
     }).option('n', {
         alias: 'filename',
         type: 'string',
         default: `table-new`,
-        demandOption: true,
         description: 'Filename'
     }).check((yarg, options) => {
         if (yarg.b < 0) {
