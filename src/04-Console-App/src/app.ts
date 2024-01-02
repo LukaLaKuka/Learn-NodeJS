@@ -1,4 +1,4 @@
-import { ServerApp } from "./ServerApp";
+import { ServerApp } from "./presentation/ServerApp";
 import { yarg as argvs } from "./config/plugins/yargs.plugin";
 
 // console.log(argvs);

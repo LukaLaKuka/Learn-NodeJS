@@ -29,7 +29,8 @@ export const yarg = yargs(hideBin(process.argv))
         description: 'Filename'
     }).check((yarg, options) => {
         if (yarg.b < 0) {
-            throw new Error('Base must be a natural number');
+            console.error('Base cannot be under 0. Converting base to 0...');
+            yarg.b = 0;
         }
         return true;
     })
