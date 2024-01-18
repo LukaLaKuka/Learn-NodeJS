@@ -18,8 +18,8 @@ export class CheckService implements ICheckService {
             }
             console.log(`${url} service working`);
             return true;
-        } catch (err) {
-            console.error(err);
+        } catch (err: Error | any) {
+            console.error(`Service ${url} failed with '${err.message}'`);
             return false;
         }
     }
