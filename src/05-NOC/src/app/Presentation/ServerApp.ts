@@ -9,7 +9,7 @@ export class ServerApp {
     public static run(): void {
         console.log('Server running...');
         CronService.createJob('*/5 * * * * *', () => {
-            new CheckService().execute(`https://localhost:3000`);
+            new CheckService().execute(`http://localhost:3000`);
         }).start();
     }
 }
