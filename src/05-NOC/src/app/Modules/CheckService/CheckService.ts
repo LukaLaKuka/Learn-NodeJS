@@ -1,3 +1,7 @@
+import { LogSeverityLevel } from "../../Models/Loggers/Interfaces/LoggerInterface";
+import { LogEntity } from "../../Models/Loggers/LogEntity";
+import { LogRepository } from "../../Repositories/LoggerRepository/LogRepository";
+
 interface ICheckService {
     execute(url: string): Promise<boolean>
 }
@@ -7,15 +11,18 @@ type ErrorCallback = (error: string) => void;
 
 export class CheckService implements ICheckService {
 
-    private readonly successCallback: SuccessCallback;
-    private readonly errorCallback: ErrorCallback;
+    private readonly successCallback?: SuccessCallback;
+    private readonly errorCallback?: ErrorCallback;
+    private readonly logRepository: LogRepository;
 
     constructor(
-        successCallback: SuccessCallback,
-        errorCallback: ErrorCallback
+        logRepository: LogRepository,
+        successCallback?: SuccessCallback,
+        errorCallback?: ErrorCallback
     ) {
         this.successCallback = successCallback;
         this.errorCallback = errorCallback;
+        this.logRepository = logRepository;
     }
 
     public async execute(url: string): Promise<boolean> {
@@ -24,10 +31,15 @@ export class CheckService implements ICheckService {
             if (!req.ok) {
                 throw new Error(`Error Checking the service on ${url}`);
             }
-            this.successCallback();
+            if (this.successCallback) {
+                this.successCallback();
+            }
             return true;
         } catch (err: Error | any) {
-            this.errorCallback(err.message);
+            this.logRepository.saveLog(new LogEntity(err.message, LogSeverityLevel.medium));
+            if (this.errorCallback) {
+                this.errorCallback(err.message);
+            }
             return false;
         }
     }
