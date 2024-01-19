@@ -2,13 +2,21 @@ interface ICheckService {
     execute(url: string): Promise<boolean>
 }
 
+type SuccessCallback = () => void;
+type ErrorCallback = (error: string) => void;
+
 export class CheckService implements ICheckService {
 
-    // private storageService: any;
+    private readonly successCallback: SuccessCallback;
+    private readonly errorCallback: ErrorCallback;
 
-    // constructor(storageService: any) {
-    //     this.storageService = storageService;
-    // }
+    constructor(
+        successCallback: SuccessCallback,
+        errorCallback: ErrorCallback
+    ) {
+        this.successCallback = successCallback;
+        this.errorCallback = errorCallback;
+    }
 
     public async execute(url: string): Promise<boolean> {
         try {
@@ -16,10 +24,10 @@ export class CheckService implements ICheckService {
             if (!req.ok) {
                 throw new Error(`Error Checking the service on ${url}`);
             }
-            console.log(`${url} service working`);
+            this.successCallback();
             return true;
         } catch (err: Error | any) {
-            console.error(`Service ${url} failed with '${err.message}'`);
+            this.errorCallback(err.message);
             return false;
         }
     }
