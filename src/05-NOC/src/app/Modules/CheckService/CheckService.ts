@@ -6,8 +6,8 @@ interface ICheckService {
     execute(url: string): Promise<boolean>
 }
 
-type SuccessCallback = () => void;
-type ErrorCallback = (error: string) => void;
+type SuccessCallback = () => void | undefined;
+type ErrorCallback = (error: string) => void | undefined;
 
 export class CheckService implements ICheckService {
 
@@ -31,15 +31,11 @@ export class CheckService implements ICheckService {
             if (!req.ok) {
                 throw new Error(`Error Checking the service on ${url}`);
             }
-            if (this.successCallback) {
-                this.successCallback();
-            }
+            this.successCallback && this.successCallback();
             return true;
         } catch (err: Error | any) {
             this.logRepository.saveLog(new LogEntity(err.message, LogSeverityLevel.medium));
-            if (this.errorCallback) {
-                this.errorCallback(err.message);
-            }
+            this.errorCallback && this.errorCallback(err.message);
             return false;
         }
     }

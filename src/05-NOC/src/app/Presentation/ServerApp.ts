@@ -9,7 +9,7 @@ const FileSystemLogRepository = new LogRepositoryImplementation(
 );
 
 export class ServerApp {
-
+    
     /**
      * Fn to start the Server
      */
