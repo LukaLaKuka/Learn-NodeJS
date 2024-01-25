@@ -34,7 +34,11 @@ export class CheckService implements ICheckService {
             this.successCallback && this.successCallback();
             return true;
         } catch (err: Error | any) {
-            this.logRepository.saveLog(new LogEntity(err.message, LogSeverityLevel.medium));
+            this.logRepository.saveLog(new LogEntity({
+                message: err.message,
+                level: LogSeverityLevel.high,
+                origin: __filename
+            }));
             this.errorCallback && this.errorCallback(err.message);
             return false;
         }
