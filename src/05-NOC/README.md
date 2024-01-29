@@ -9,6 +9,17 @@ npm install
 
 - Copy [.env.template](.env.template) to `.env`
 
+- Compose up Databases:
+```bash
+docker compose up -d
+```
+
+- Migrate the database:
+
+```bash
+npx prisma migrate dev --name init
+```
+
 ## List of Commands
 
 - `npm run dev`: Run in development mode.

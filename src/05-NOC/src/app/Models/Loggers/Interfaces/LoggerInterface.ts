@@ -4,6 +4,7 @@ export interface ILogger {
     level: LogSeverityLevel;
     message: string;
     createdAt: Date;
+    origin: string;
 }
 
 export enum LogSeverityLevel {

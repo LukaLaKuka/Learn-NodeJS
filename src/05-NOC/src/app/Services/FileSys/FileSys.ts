@@ -30,7 +30,7 @@ export class FileSystemDataSource implements LogDataSource {
     }
 
     async saveLog(log: LogEntity): Promise<void> {
-        let logString: string = `${JSON.stringify(log)}\n`;
+        let logString: string = `${JSON.stringify(log)}`;
 
         fs.appendFileSync(this.AllLogPath, logString, { encoding: 'utf-8' });
 
@@ -62,7 +62,8 @@ export class FileSystemDataSource implements LogDataSource {
     }
 
     private getLogsFromFile(path: string): LogEntity[] {
-        const content = fs.readFileSync(path, 'utf-8').split('\n').map(LogEntity.fromJson);
-        return content;
+        const content = fs.readFileSync(path, 'utf-8')
+        const logs = content.split('\n').filter((log) => log.trim() !== '').map(LogEntity.fromJson);
+        return logs;
     }
 }
