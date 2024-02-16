@@ -6,10 +6,11 @@
 import type { Config } from 'jest';
 
 const config: Config = {
- clearMocks: true,
- collectCoverage: true,
- coverageDirectory: "coverage",
- coverageProvider: "v8",
+    clearMocks: true,
+    collectCoverage: true,
+    coverageDirectory: "coverage",
+    coverageProvider: "v8",
+    testEnvironment: 'jest-enviroment-mode',
 };
 
 export default config;
