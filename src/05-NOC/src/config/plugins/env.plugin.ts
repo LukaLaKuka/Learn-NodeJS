@@ -11,4 +11,5 @@ export const Configuration = {
     MONGO_DB_NAME: env.get('MONGO_DB_NAME').required().asString(),
     MONGO_USER: env.get('MONGO_USER').required().asString(),
     MONGO_PASS: env.get('MONGO_PASS').required().asString(),
+    PROD: env.get('PROD').required().asBool(),
 }

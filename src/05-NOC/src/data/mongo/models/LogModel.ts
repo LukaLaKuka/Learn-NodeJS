@@ -1,4 +1,4 @@
-import { ILogger, LogSeverityLevel } from "../../../app/Models/Loggers/Interfaces/LoggerInterface";
+import { LogSeverityLevel } from "../../../app/Models/Loggers/Interfaces/LoggerInterface";
 import mongoose from "mongoose";
 
 const logSchema = new mongoose.Schema({
@@ -11,7 +11,10 @@ const logSchema = new mongoose.Schema({
         enum: [LogSeverityLevel.low, LogSeverityLevel.medium, LogSeverityLevel.high],
         default: 'low',
     },
-    createdAt: String,
+    createdAt: {
+        type: Date,
+        default: new Date(),
+    },
     origin: String,
 });
 
