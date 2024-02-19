@@ -14,21 +14,25 @@ export class LogEntity implements ILogger {
     public origin: string;
 
     constructor(options: LogEntityOptions) {
-        this.level = options.level;
-        this.message = options.message;
-        options.createdAt ? this.createdAt = options.createdAt : this.createdAt = new Date();
-        this.origin = options.origin;
+        const { message, level, origin, createdAt = new Date() } = options;
+        this.level = level;
+        this.message = message;
+        this.createdAt = createdAt;
+        this.origin = origin;
     }
 
     static fromJson = (json: string): LogEntity => {
-        let { message, level, createdAt } = JSON.parse(json);
-        const log = new LogEntity({ message, level, origin: __filename, createdAt });
+        let { message, level, createdAt, origin } = JSON.parse(json);
+        const log = new LogEntity({
+            message,
+            level,
+            origin,
+            createdAt: new Date(createdAt)
+        });
         return log;
     }
 
-    static fromObject = (object: {
-        [key: string]: any
-    }): LogEntity => {
+    static fromObject = (object: { [key: string]: any }): LogEntity => {
         const { message, level, createdAt, origin } = object;
         const log = new LogEntity({
             message,
