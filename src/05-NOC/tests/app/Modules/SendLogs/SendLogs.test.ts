@@ -1,5 +1,6 @@
 import { SendLogEmail } from '../../../../src/app/Modules/SendLogs/SendLogs';
-import { EmailService } from '../../../../src/app/Services/Email/EmailService';
+import { LogEntity } from '../../../../src/app/Models/Loggers/LogEntity';
+import { LogSeverityLevel } from '../../../../src/app/Models/Loggers/Interfaces/LoggerInterface';
 describe('Send Logs Suit Tests', () => {
 
     const MockLogRepository = {
@@ -8,13 +9,21 @@ describe('Send Logs Suit Tests', () => {
     }
 
     const MockEmailService = {
-        sendEmailWithFileSystemLogs: jest.fn(),
-        sendEmail: jest.fn(),
-    } as EmailService;
+        sendEmailWithFileSystemLogs: jest.fn().mockReturnValue(true),
+    };
+
+    const SendLogMailer = new SendLogEmail(
+        MockEmailService as any,
+        MockLogRepository
+    );
+
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
 
     test('Instance of SendLogEmail', () => {
         const SendLogMailer = new SendLogEmail(
-            MockEmailService,
+            MockEmailService as any,
             MockLogRepository
         );
 
@@ -22,5 +31,28 @@ describe('Send Logs Suit Tests', () => {
         expect(typeof SendLogMailer.execute).toBe('function');
     });
 
-    test('')
+    test('Should call to sendEmail and saveLog', async () => {
+
+        const result = await SendLogMailer.execute('tomhuelytr@gmail.com');
+
+        expect(result).toBe(true);
+
+    });
+
+    test('Should log in case of error', async () => {
+
+        MockEmailService.sendEmailWithFileSystemLogs.mockResolvedValue(false);
+
+        const result = await SendLogMailer.execute('tomhuelytr@gmail.com');
+
+        expect(result).toBe(false);
+        expect(MockEmailService.sendEmailWithFileSystemLogs).toHaveBeenCalledTimes(1);
+        expect(MockLogRepository.saveLog).toBeCalledWith(expect.any(LogEntity));
+        expect(MockLogRepository.saveLog).toHaveBeenCalledWith({
+            level: LogSeverityLevel.high,
+            origin: expect.any(String),
+            message: '',
+            createdAt: expect.any(Date)
+        });
+    });
 });

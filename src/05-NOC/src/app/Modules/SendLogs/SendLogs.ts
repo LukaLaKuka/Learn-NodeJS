@@ -17,6 +17,11 @@ export class SendLogEmail implements ISendLogEmail {
     async execute(to: string | string[]): Promise<boolean> {
         try {
             const sent = await this.EmailService.sendEmailWithFileSystemLogs(to);
+
+            if (!sent) {
+                throw new Error('Error sending email');
+            }
+            
             return true;
         } catch (err) {
             const log = new LogEntity({

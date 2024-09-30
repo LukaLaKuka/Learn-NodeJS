@@ -57,6 +57,6 @@ export class EmailService {
             { filename: 'danger.log', path: path.join(Paths.logs, 'danger.log') }
         ];
 
-        this.sendEmail({ to, subject, htmlBody, attachments });
+        return this.sendEmail({ to, subject, htmlBody, attachments });
     }
 }
