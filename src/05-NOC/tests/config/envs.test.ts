@@ -6,7 +6,7 @@ describe('Enviroment Variables Suit Tests', () => {
         expect(Configuration).toEqual({
             PORT: 3000,
             MAILER_EMAIL: 'tomhuelytr@gmail.com',
-            MAILER_SECRET_KEY: 'wrmvxdvbqgfmeymb',
+            MAILER_SECRET_KEY: '********',
             MAILER_SERVICE: 'gmail',
             MONGO_URL: 'mongodb://tomhuel:123456@localhost:27017',
             MONGO_DB_NAME: 'NOC-TEST',
