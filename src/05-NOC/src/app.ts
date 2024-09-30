@@ -6,9 +6,7 @@ import { Configuration } from "./config/plugins/env.plugin";
     await main();
 })();
 
-async function main() {
-    console.log(Configuration.MONGO_URL);
-    
+async function main() {    
     await MongoDatabase.connect({
         mongoUrl: Configuration.MONGO_URL,
         databaseName: Configuration.MONGO_DB_NAME
