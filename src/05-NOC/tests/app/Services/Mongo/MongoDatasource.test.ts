@@ -1,10 +1,10 @@
-import { MongoDatabase } from '../../../src/data/mongo/init';
-import { Configuration } from '../../../src/config/plugins/env.plugin';
+import { MongoDatabase } from '../../../../src/data/mongo/init';
+import { Configuration } from '../../../../src/config/plugins/env.plugin';
 import mongoose from 'mongoose';
-import { MongoDataSource } from '../../../src/app/Services/Mongo/MongoDataSource';
-import { LogSeverityLevel } from '../../../src/app/Models/Loggers/Interfaces/LoggerInterface';
-import { LogEntity } from '../../../src/app/Models/Loggers/LogEntity';
-import { LogModel } from '../../../src/data/mongo';
+import { MongoDataSource } from '../../../../src/app/Services/Mongo/MongoDataSource';
+import { LogSeverityLevel } from '../../../../src/app/Models/Loggers/Interfaces/LoggerInterface';
+import { LogEntity } from '../../../../src/app/Models/Loggers/LogEntity';
+import { LogModel } from '../../../../src/data/mongo';
 
 describe('Mongo Datasource Testing', () => {
 

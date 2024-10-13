@@ -3,12 +3,12 @@ import { Configuration } from "../../../config/plugins/env.plugin";
 import path from "path";
 import { Paths } from "../../../config/paths";
 
-type Attachment = {
+export type Attachment = {
     filename: string,
     path: string,
 }
 
-interface sendMailOptions {
+export interface sendMailOptions {
     to: string | string[];
     subject: string;
     htmlBody: string;
